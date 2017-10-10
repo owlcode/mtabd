@@ -1,0 +1,87 @@
+USE master;  
+GO  
+
+CREATE DATABASE db_app
+GO
+
+USE db_app
+GO
+
+EXEC SP_ADDLOGIN @LOGINAME='db_app', @PASSWD='db_app', @DEFDB=db_app
+EXEC SP_ADDUSER @LOGINAME='db_app'
+EXEC SP_ADDROLEMEMBER @ROLENAME='db_owner', @MEMBERNAME='db_app'
+GO
+
+CREATE TABLE Dict (
+	d_id INT IDENTITY(1,1) PRIMARY KEY,
+	d_name VARCHAR(255),
+	);
+GO
+
+CREATE TABLE DictValues (
+	dv_id INT IDENTITY(1,1) PRIMARY KEY,
+	dv_key INT,
+	dv_value VARCHAR(255),
+	);
+GO
+
+CREATE TABLE Users(
+	u_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	username VARCHAR(255) NOT NULL UNIQUE,
+	first_name VARCHAR(255),
+	last_name VARCHAR(255),
+	email VARCHAR(255) NOT NULL,
+	age INT,
+	CHECK(age > 18),
+	);
+GO
+
+CREATE TABLE Performers(
+	p_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	username VARCHAR(255) NOT NULL UNIQUE,
+	first_name VARCHAR(255),
+	last_name VARCHAR(255),
+	email VARCHAR(255) NOT NULL,
+	age INT, 
+	);
+GO
+
+CREATE TABLE Services(
+	s_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	u_id INT FOREIGN KEY REFERENCES Users(u_id),
+	p_id INT FOREIGN KEY REFERENCES Performers(p_id),
+	created_at DATETIME2 NOT NULL,
+	started_at DATETIME2 NOT NULL,
+	finished_at DATETIME2 NOT NULL,
+	description VARCHAR(255),
+	);
+GO
+
+CREATE TABLE ProdInServices (
+	pis_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	s_id INT FOREIGN KEY REFERENCES Services(s_id)
+	);
+GO
+
+CREATE TABLE Products (
+	p_id INT NOT NULL IDENTITY(1,1),
+	p_name VARCHAR(255) NOT NULL,
+	p_description VARCHAR(255),
+	p_price SMALLMONEY NOT NULL,
+	pis_id INT NOT NULL FOREIGN KEY REFERENCES ProdInServices(pis_id),
+	);
+GO
+
+CREATE TABLE Chat(
+	c_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	s_id INT FOREIGN KEY REFERENCES Services(s_id),
+	);
+GO
+
+CREATE TABLE Messages(
+	c_id INT FOREIGN KEY REFERENCES Chat(c_id),
+	u_id INT FOREIGN KEY REFERENCES Users(u_id),
+	content VARCHAR(255) NOT NULL,
+	messege_time DATETIME2 NOT NULL,
+	);
+GO

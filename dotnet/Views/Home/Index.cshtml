@@ -1,0 +1,10 @@
+<h1>index.cshtml</h1>
+<h2></h2>
+<script type="text/javascript">
+fetch('api/values')
+    .then(response => response.json())
+    .then(data => data.join())
+    .then(text => {
+        document.getElementsByTagName('h2')[0].innerHTML = text
+    })
+</script>

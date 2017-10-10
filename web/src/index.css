@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.ui.grid {
+    margin: 0;
+}
+
+.pusher {
+    padding-right: 150px;
+}
+
+.UserForm {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    text-align: left;
+}
+
+.fullScreen {
+    min-height: 100vh;
+}
