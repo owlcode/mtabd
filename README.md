@@ -1,10 +1,13 @@
 # mtabd
 Rebandel, Skrobich, Sowa
 
+## Test services
 [Frontend](http://vps331205.ovh.net:3000/)
 [Database]()
 [Backend API]()
 [Jenkins]()
+
+## Todos
 
 ### Database
 * refactor field names (e.g no need to prefix id in each table)
