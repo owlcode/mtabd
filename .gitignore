@@ -1,7 +1,8 @@
-./web/node_modules
-./web/build
-./web/.env
+/web/node_modules/
+/web/build/
+/web/.env
+/web/.vscode
 
-./dotnet/bin
-./dotnet/obj
-
+/dotnet/obj/
+/dotnet/bin/
+/dotnet/.vscode
