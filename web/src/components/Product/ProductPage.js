@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
-import ArticleForm from './ArticleForm'
-import ArticleList from './ArticleList'
-import Article from './Article'
+import Product from "./Product";
 
-class UserPage extends Component {
+class ProductPage extends Component {
     sections = [
         {
             key: 'Home',
-            content: 'poMocny',
+            content: 'mta.bd',
             href: '/',
             link: true
 
         }, {
             key: 'Store',
-            content: 'Atrykuły',
+            content: 'Produkty',
             href: '/article',
             link: true,
             active: true
@@ -32,13 +30,12 @@ class UserPage extends Component {
 
     render() {
         return (
-            <div className="ArticlePage">
-                <ArticleList />
-                <ArticleForm />
-                <Article/>
+            <div className="ProductPage">
+                {/*<ArticleList/>*/}
+                <Product/>
             </div>
-    )
+        )
     }
-    }
+}
 
-    export default UserPage;
+export default ProductPage;

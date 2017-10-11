@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Grid, Button, Icon, Breadcrumb, Label, Embed, Segment, Header, Rating, Progress} from 'semantic-ui-react'
 import Wall from './Wall/Wall';
-import Question from '../Question/Question';
 import {settings} from "../../settings";
 import Stats from "./Stats/Stats";
 
@@ -59,10 +58,8 @@ class Dashboard extends Component {
                             <Breadcrumb icon='right angle' sections={this.sections}/>
                         </Grid.Column>
                         <Grid.Column floated='right' textAlign='right' width={6} verticalAlign='middle'>
-                            <Label as='a' tag onClick={window.history.back}>
-                                <Icon name='angle double left'/>
-                                Cofnij
-                            </Label>
+                            <Icon name='facebook'/>
+                            <Icon name='youtube'/>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -102,13 +99,6 @@ class Dashboard extends Component {
                     </Grid.Row>
 
                 </Grid>
-
-                <Question
-                    title="Czy na pewno chcesz zadzwonic?"
-                    text="Lorem ipsum dolor sit amet"
-                >
-                    {< Button > Odpowiedz sobie na jedno proste pytanie </Button>}
-                </Question>
             </div>
         );
     }

@@ -6,7 +6,6 @@ class ChatPage extends Component {
         return (
             <div className="ChatPage">
                 <ChatList/>
-
             </div>
         )
     }

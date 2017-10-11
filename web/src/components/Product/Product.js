@@ -1,27 +1,25 @@
 import React, {Component} from 'react';
 import {Button, Header, Icon, Segment, Container} from 'semantic-ui-react'
 
-class Article extends Component {
-    constructor(props)
-    {
+class Product extends Component {
+    constructor(props) {
         super(props);
 
         this.state = {
-            img: "http://semantic-ui.com/images/avatar2/small/lindsay.png",
-            title: "Tytuł artykułu 1",
-            text: "Te eum doming eirmod, nominati pertinacia argumentum ad his. Ex eam alia facete scriptorem, est autem"
+            id: 1,
+            name: '#DEVELOPER-TEST Nazwa produktu',
+            description: 'Opis produktu Lorem ipsum dolor sit amet sit ametyst lubkoa skoasd.',
+            price: 25002
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event)
-    {
+    handleChange(event) {
         this.setState({value: event.target.value});
     }
 
-    handleSubmit(event)
-    {
+    handleSubmit(event) {
         alert(this.article.value);
         event.preventDefault();
     }
@@ -31,30 +29,27 @@ class Article extends Component {
             <Segment.Group raised>
                 <Segment color="green">
                     <Header as='h2' size='medium'>
-                        <Icon name='newspaper'/>
+                        <Icon name='product'/>
                         <Header.Content>
-                            Artykuł
+                            Produkt
                         </Header.Content>
                     </Header>
                 </Segment>
                 <Segment>
                     <Container text>
                         <Header>
-                            <img src={this.state.img} alt="avatar"/>{this.state.title}
+                            {this.state.name}
                             <Button.Group floated='right'>
                                 <Button negative>Usuń</Button>
                                 <Button color="blue">Edytuj</Button>
                             </Button.Group>
                         </Header>
-                        {this.state.text}
-                        <div>
-                            <Button attached='left'>Komentarz</Button>
-                            <Button attached='right'>Powrót do listy artykułów</Button>
-                        </div>
+                        {this.state.description}
                     </Container>
                 </Segment>
             </Segment.Group>
         );
     }
 }
-export default Article
+
+export default Product

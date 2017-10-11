@@ -39,7 +39,7 @@ class App extends Component {
                         icon='labeled'
                         vertical
                         inverted>
-                        <Link to='/'>
+                        <Link to='/dashboard'>
                             <Menu.Item name='home'>
                                 <Icon name='home'/>
                                 Home
@@ -52,22 +52,16 @@ class App extends Component {
                                 Chat
                             </Menu.Item>
                         </Link>
-                        <Link to='/questionnaire'>
-                            <Menu.Item name='questionnaire'>
-                                <Icon name='checkmark box'/>
-                                Kwestionariusze
-                            </Menu.Item>
-                        </Link>
                         <Link to='/user'>
                             <Menu.Item name='users'>
                                 <Icon name='user'/>
                                 Użytkownicy
                             </Menu.Item>
                         </Link>
-                        <Link to='/article'>
-                            <Menu.Item name='article'>
-                                <Icon name='newspaper'/>
-                                Artykuły
+                        <Link to='/product'>
+                            <Menu.Item name='product'>
+                                <Icon name='tags'/>
+                                Produkty
                             </Menu.Item>
                         </Link>
                     </Sidebar>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Header, Image, Table, Checkbox, Icon, Dimmer} from 'semantic-ui-react';
-import Question from '../Question/Question'
+import {Question, Header, Image, Table, Checkbox, Icon, Dimmer} from 'semantic-ui-react';
 import UserCard from './UserCard';
 import {settings} from "../../settings";
 

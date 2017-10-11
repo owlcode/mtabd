@@ -16,7 +16,7 @@ class ChatList extends Component {
 
         this.source.onmessage = (e) => {
             this.setState({data: [JSON.parse(e.data)]});
-        }
+        };
 
         fetch(settings.api + '/api/talk')
             .then(res => res.json())
@@ -54,8 +54,8 @@ class ChatList extends Component {
     render() {
         if (this.state.data) {
             return (
-                <Segment.Group raised>
-                    <Segment color="green">
+                <Segment.Group>
+                    <Segment>
                         <Header as='h2' size='medium'>
                             <Icon name='chat'/>
                             <Header.Content>

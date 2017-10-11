@@ -9,7 +9,7 @@ class UserPage extends Component {
     sections = [
         {
             key: 'Home',
-            content: 'poMocny',
+            content: 'mta.bd',
             href: '/'
         }, {
             key: 'Store',
@@ -42,10 +42,10 @@ class UserPage extends Component {
                             <Breadcrumb icon='right angle' sections={this.sections}/>
                         </Grid.Column>
                         <Grid.Column floated='right' textAlign='right' width={6} verticalAlign='middle'>
-                            <Label as='a' tag onClick={window.history.back}>
-                                <Icon name='angle double left'/>
-                                Cofnij
-                            </Label>
+                            <Icon name='tag' size='large'/>
+                            <Icon name='privacy' size='large'/>
+                            <Icon name='settings' size='large'/>
+                            <Icon name='cloud' size='large'/>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -54,14 +54,12 @@ class UserPage extends Component {
                         <PageHeader icon="user" title="Lista uzytkownikow"/>
                     </Grid.Column>
                     <Grid.Column floated='right' width={6} textAlign='right'>
-                        <Button onClick={this.handleOpen} inverted color='olive'><Icon name='file excel outline'/>
-                            Eksportuj do excela</Button>
                         <Button onClick={this.handleOpen} primary><Icon name='plus'/> Dodaj</Button>
                     </Grid.Column>
                 </Grid>
 
                 <Dimmer active={this.state.creating} onClickOutside={this.handleClose} page>
-                    <UserForm />
+                    <UserForm/>
                 </Dimmer>
                 <UserList/>
             </div>
