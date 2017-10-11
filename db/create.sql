@@ -12,76 +12,89 @@ EXEC SP_ADDUSER @LOGINAME='db_app'
 EXEC SP_ADDROLEMEMBER @ROLENAME='db_owner', @MEMBERNAME='db_app'
 GO
 
-CREATE TABLE Dict (
+CREATE TABLE Dictionaries (
 	id INT IDENTITY(1,1) PRIMARY KEY,
 	name VARCHAR(255),
 	);
 GO
 
+Create table Translations (
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	language VARCHAR(255)
+)
+GO
+
 CREATE TABLE DictValues (
-	dv_id INT IDENTITY(1,1) PRIMARY KEY,
-	dv_key INT,
-	dv_value VARCHAR(255),
+	id INT IDENTITY(1,1) primary key,
+	dictId INT foreign key references Dictionaries(id),
+	translationId INT foreign key references Translations(id),
+	key INT,
+	value VARCHAR(255),
 	);
 GO
 
 CREATE TABLE Users(
-	u_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	username VARCHAR(255) NOT NULL UNIQUE,
-	first_name VARCHAR(255),
-	last_name VARCHAR(255),
-	email VARCHAR(255) NOT NULL,
-	age INT,
-	CHECK(age > 18),
+	passwd VARCHAR(255) NOT NULL, /* hash */
+	firstName VARCHAR(255),
+	lastName VARCHAR(255),
+	email VARCHAR(255) NOT NULL, /* regex mail check */
+	birth VARCHAR(255),
+	createdAt DATETIME2 NOT NULL
 	);
 GO
 
+/* definately needs to be merged with users, add another column `userType` */
 CREATE TABLE Performers(
-	p_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	username VARCHAR(255) NOT NULL UNIQUE,
-	first_name VARCHAR(255),
-	last_name VARCHAR(255),
+	firstName VARCHAR(255),
+	lastName VARCHAR(255),
 	email VARCHAR(255) NOT NULL,
 	age INT, 
 	);
 GO
+/******************/
 
 CREATE TABLE Services(
-	s_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	u_id INT FOREIGN KEY REFERENCES Users(u_id),
-	p_id INT FOREIGN KEY REFERENCES Performers(p_id),
-	created_at DATETIME2 NOT NULL,
-	started_at DATETIME2 NOT NULL,
-	finished_at DATETIME2 NOT NULL,
+	id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	userId INT FOREIGN KEY REFERENCES Users(id),
+	performerId INT FOREIGN KEY REFERENCES Performers(id),
+	createdAt DATETIME2 NOT NULL,
+	startDate DATETIME2 NOT NULL,
+	finishDate DATETIME2 NOT NULL,
 	description VARCHAR(255),
 	);
 GO
 
-CREATE TABLE ProdInServices (
-	pis_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	s_id INT FOREIGN KEY REFERENCES Services(s_id)
+CREATE TABLE ProductsInServices (
+	productId INT FOREIGN KEY REFERENCES Products(id),
+	serviceId INT FOREIGN KEY REFERENCES Services(id)
 	);
 GO
 
 CREATE TABLE Products (
-	p_id INT NOT NULL IDENTITY(1,1),
-	p_name VARCHAR(255) NOT NULL,
-	p_description VARCHAR(255),
-	p_price SMALLMONEY NOT NULL,
-	pis_id INT NOT NULL FOREIGN KEY REFERENCES ProdInServices(pis_id),
+	id INT NOT NULL IDENTITY(1,1),
+	name VARCHAR(255) NOT NULL,
+	description VARCHAR(255),
+	price SMALLMONEY NOT NULL,
+	group VARCHAR(255)
 	);
 GO
 
 CREATE TABLE Chat(
-	c_id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	s_id INT FOREIGN KEY REFERENCES Services(s_id),
+	id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	serviceId INT FOREIGN KEY REFERENCES Services(id),
 	);
 GO
 
 CREATE TABLE Messages(
-	c_id INT FOREIGN KEY REFERENCES Chat(c_id),
-	u_id INT FOREIGN KEY REFERENCES Users(u_id),
-	content VARCHAR(255) NOT NULL,
-	messege_time DATETIME2 NOT NULL,
+	chatId INT FOREIGN KEY REFERENCES Chat(id),
+	userId INT FOREIGN KEY REFERENCES Users(id),
+	browserAgent VARCHAR(255), 
+    ipv4 VARCHAR(255),
+	text VARCHAR(255) NOT NULL,
+	createdAt DATETIME2 NOT NULL, /* auto fill */
 	);
 GO
