@@ -6,6 +6,7 @@ import org.joda.money.BigMoney;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,6 +21,9 @@ public class Product {
     private String name;
 
     private String description;
+
+    @ManyToMany
+    private List<Service> services;
 
     @Type(type = "org.jadira.usertype.moneyandcurrency.joda.PersistentMoneyAmount",
           parameters = {@org.hibernate.annotations.Parameter(name = "currencyCode", value = "USD")})
