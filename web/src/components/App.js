@@ -50,6 +50,13 @@ class App extends Component {
                                 Home
                             </Menu.Item>
                         </Link>
+                        <Link to='/deal'>
+                            <Menu.Item name='deal'>
+                                <Label color='red' circular>5</Label>
+                                <Icon name='cube'/>
+                                Deal
+                            </Menu.Item>
+                        </Link>
                         <Link to='/chat'>
                             <Menu.Item name='chat'>
                                 <Label color='teal' circular>24</Label>

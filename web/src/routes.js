@@ -8,6 +8,7 @@ import App from './components/App';
 import ChatPage from "./components/Chat/ChatPage";
 import SingleChat from "./components/Chat/SingleChat";
 import ProductPage from "./components/Product/ProductPage";
+import DealPage from "./components/Deal/DealPage";
 
 const Routes = (props) => (
     <Router {...props}>
@@ -16,6 +17,7 @@ const Routes = (props) => (
             <IndexRoute component={Dashboard}/>
             <Route path="dashboard" component={Dashboard}/>
             <Route path="user" component={UserPage} />
+            <Route path="deal" component={DealPage} />
             <Route path="product" component={ProductPage}/>
             <Route path="comment" component={CommentPage}/>
             <Route path="login" component={LoginPage}/>

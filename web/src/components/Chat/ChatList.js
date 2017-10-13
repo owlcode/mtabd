@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Divider, Header, Icon, Image, List, Segment} from 'semantic-ui-react';
+import {Button, Divider, Header, Icon, Image, List, Segment, Grid} from 'semantic-ui-react';
 import {Link} from 'react-router';
 import {settings} from "../../settings";
 
@@ -29,22 +29,23 @@ class ChatList extends Component {
 
         this.state.data.forEach(item => {
             list.push(
-                <List.Item key={item._id}>
-                    <List.Content floated='right' verticalAlign='middle'>
-                        <Link to={'chat/single/' + item._id}>
-                            <Button size='large'>Wyświetl wiadomość</Button>
-                        </Link>
-                    </List.Content>
-                    <Image avatar src='http://semantic-ui.com/images/avatar2/small/rachel.png' size='tiny'/>
-                    <List.Content>
-                        <h3>Jan Kaczkoski</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Aliquam. </p>
-                        <i>{item.createdAt}</i>
+                <Grid.Column key={item._id}>
+                    <Link to={'chat/single/' + item._id}>
+                        <Segment raised>
+                            <Image avatar src='http://semantic-ui.com/images/avatar2/small/rachel.png' size='tiny'/>
+                            <List.Content>
+                                <h3>Jan Kaczkoski</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Aliquam. </p>
+                                <i>{item.createdAt}</i>
 
-                    </List.Content>
-                    <Divider/>
-                </List.Item>
+                            </List.Content>
+                        </Segment>
+
+                    </Link>
+                </Grid.Column>
             );
         }, this);
 
@@ -63,9 +64,9 @@ class ChatList extends Component {
                             </Header.Content>
                         </Header>
                     </Segment>
-                    <List>
+                    <Grid doubling columns={4}>
                         {this.renderDataList()}
-                    </List>
+                    </Grid>
                 </Segment.Group>
 
             );
