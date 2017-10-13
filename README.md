@@ -18,11 +18,9 @@ Rebandel, Skrobich, Sowa
 * create chat SSE endpoint to push new messages
 
 ### Frontend
-* fix closing modal after adding user
 * add user required validation
-* add toast information
 
-**DONE** *app logo, remove obsolete pages*
+**DONE** *app logo, remove obsolete pages, add toast information, fix closing modal after adding user*
 
 ### Database
 **DONE** *refactor field names, create additional relations*
