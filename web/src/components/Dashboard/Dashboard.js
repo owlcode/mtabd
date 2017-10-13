@@ -8,7 +8,7 @@ class Dashboard extends Component {
     sections = [
         {
             key: 'Home',
-            content: 'poMocny',
+            content: 'Dashboard',
             href: '/',
             active: true
         },
