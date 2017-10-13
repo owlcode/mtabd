@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Breadcrumb, Button, Embed, Grid, Header, Icon, Label, Progress, Rating, Segment} from 'semantic-ui-react'
+import {Breadcrumb, Embed, Grid, Header, Icon, Progress, Rating, Segment} from 'semantic-ui-react'
 import Wall from './Wall/Wall';
 import {settings} from "../../settings";
 import Stats from "./Stats/Stats";
