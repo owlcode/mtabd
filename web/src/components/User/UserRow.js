@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Checkbox, Dimmer, Header, Icon, Image, Question, Table} from 'semantic-ui-react';
 import UserCard from './UserCard';
 import {settings} from "../../settings";
+import {toast} from 'react-toastify';
 
 class UserRow extends Component {
     constructor(props) {
@@ -19,24 +20,30 @@ class UserRow extends Component {
         })
             .then(res => res.json())
             .then(content => {
-
-            });
+                toast.success('Użytkownik został pomyślnie usunięty')
+            }).catch(err => {
+            toast.error(err.message)
+        })
     }
 
-    handleOpen = () => this.setState({preview: true})
+    handleOpen = () => {
+        this.setState({preview: true})
+    }
     handleClose = () => this.setState({preview: false})
-
+    handleCheckboxClick = (event) => {
+        event.preventDefault();
+    }
     render() {
         return (
 
             <Table.Row>
-                <Table.Cell>
-                    <Checkbox/>
+                <Table.Cell textAlign="center">
+                    <Checkbox onClick={(e) => this.handleCheckboxClick(e)}/>
                 </Table.Cell>
-                <Table.Cell>
+                <Table.Cell onClick={this.handleOpen}>
                     <Image src={this.props.photo} shape='rounded' size='mini'/>
                 </Table.Cell>
-                <Table.Cell>
+                <Table.Cell onClick={this.handleOpen}>
                     <Header as='h4' image>
                         <Header.Content>
                             {this.props.name}
@@ -45,13 +52,13 @@ class UserRow extends Component {
                         </Header.Content>
                     </Header>
                 </Table.Cell>
-                <Table.Cell>
+                <Table.Cell onClick={this.handleOpen}>
                     {this.props.id}
                 </Table.Cell>
-                <Table.Cell>
+                <Table.Cell onClick={this.handleOpen}>
                     {this.props.phone}
                 </Table.Cell>
-                <Table.Cell>
+                <Table.Cell onClick={this.handleOpen}>
                     {this.props.updatedAt}
                 </Table.Cell>
                 <Table.Cell>
@@ -59,16 +66,8 @@ class UserRow extends Component {
                         <UserCard/>
                     </Dimmer>
 
-                        <Icon name='eye' onClick={this.handleOpen}/>
-
-
-                        <Icon name='edit'/>
-
-                    <Question
-                        title="Usuwanie rekordu"
-                        text="Czy na pewno chcesz usunąć rekord? Operacja nie może zostać cofnięta">
-                        <Icon name='remove' onClick={this.handleOpen} />
-                    </Question>
+                    <Icon name='edit'/>
+                    <Icon name='remove'/>
 
                 </Table.Cell>
             </Table.Row>

@@ -55,8 +55,8 @@ class UserForm extends Component {
 
     render() {
         return (
-            <Segment.Group raised compact>
-                <Segment color="green">
+            <Segment.Group compact>
+                <Segment>
                     <Header as='h2' size='medium'>
                         <Icon name='user'/>
                         <Header.Content>

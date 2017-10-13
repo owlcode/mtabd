@@ -42,20 +42,9 @@ class UserPage extends Component {
                             <Breadcrumb icon='right angle' sections={this.sections}/>
                         </Grid.Column>
                         <Grid.Column floated='right' textAlign='right' width={6} verticalAlign='middle'>
-                            <Icon name='tag' size='large'/>
-                            <Icon name='privacy' size='large'/>
-                            <Icon name='settings' size='large'/>
-                            <Icon name='cloud' size='large'/>
+                            <Button onClick={this.handleOpen} primary compact><Icon name='plus'/> Dodaj</Button>
                         </Grid.Column>
                     </Grid.Row>
-                </Grid>
-                <Grid>
-                    <Grid.Column floated='left' width={6} verticalAlign='middle'>
-                        <PageHeader icon="user" title="Lista uzytkownikow"/>
-                    </Grid.Column>
-                    <Grid.Column floated='right' width={6} textAlign='right'>
-                        <Button onClick={this.handleOpen} primary><Icon name='plus'/> Dodaj</Button>
-                    </Grid.Column>
                 </Grid>
 
                 <Dimmer active={this.state.creating} onClickOutside={this.handleClose} page>

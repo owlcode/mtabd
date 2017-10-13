@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Header, Icon, Segment, Table} from 'semantic-ui-react';
 import {settings} from '../../settings';
-import ArticleRow from './ProductRow';
+import ProductRow from './ProductRow';
 
-class ArticleList extends Component {
+class ProductList extends Component {
 
     constructor(props) {
         super(props);
@@ -12,7 +12,7 @@ class ArticleList extends Component {
             data: []
         };
 
-        fetch(settings.api + '/api/article')
+        fetch(settings.api + '/api/product')
             .then(res => res.json())
             .then(content => {
                 this.setState({data: content})
@@ -24,7 +24,7 @@ class ArticleList extends Component {
 
         this.state.data.forEach(item => {
             list.push(
-                <ArticleRow {...item} key={item._id}></ArticleRow>
+                <ProductRow {...item} key={item._id}></ProductRow>
             );
         }, this);
 
@@ -54,4 +54,4 @@ class ArticleList extends Component {
         }
     }
 }
-export default ArticleList;
+export default ProductList;

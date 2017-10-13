@@ -25,23 +25,6 @@ class Dashboard extends Component {
         };
 
         this.interval = setInterval(() => this.setState({percentage: Math.round(Math.random() * 10000) / 100}), 2500);
-
-        const headers = new Headers({'Content-Type': 'application/json; charset=UTF-8'});
-
-        fetch(settings.api + '/api/message', {
-            method: 'POST',
-            body: JSON.stringify({
-                _user: 'random',
-                _talk: 'random',
-                browserAgent: navigator.userAgent,
-                ipv4: '127.0.1.2',
-                text: 'Dobry wieczór, właśnie zalogowałem się do panelu administratora. Jakie powinienem podjąć kroki żeby uzyskać profesjonalną pomoc?'
-            }),
-            headers: headers
-        })
-            .then(res => res.json())
-            .then(content => content.data)
-            .catch(err => console.error(err));
     }
 
     componentWillUnmount() {
@@ -56,10 +39,6 @@ class Dashboard extends Component {
                         <Grid.Column floated='left' width={6} verticalAlign='middle'>
                             <Icon name='marker'/>
                             <Breadcrumb icon='right angle' sections={this.sections}/>
-                        </Grid.Column>
-                        <Grid.Column floated='right' textAlign='right' width={6} verticalAlign='middle'>
-                            <Icon name='facebook'/>
-                            <Icon name='youtube'/>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

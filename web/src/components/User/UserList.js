@@ -33,36 +33,35 @@ class UserList extends Component {
 
     render() {
         let style = {
-            minHeight: "250px"
+            paddingLeft: 'inhereit'
         }
 
         return (
             <div className="userList">
 
-                <Segment style={style}>
-                    <Dimmer active={this.state.loading} inverted>
-                        <Loader>Trwa ładowanie...</Loader>
-                    </Dimmer>
-                    <Table basic='very' celled collapsing>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell>
-                                    <Checkbox/>
-                                </Table.HeaderCell>
-                                <Table.HeaderCell onClick={this.handleOpen}>Zdjęcie</Table.HeaderCell>
-                                <Table.HeaderCell>Osoba</Table.HeaderCell>
-                                <Table.HeaderCell>PESEL</Table.HeaderCell>
-                                <Table.HeaderCell>Telefon</Table.HeaderCell>
-                                <Table.HeaderCell>Aktualizowane</Table.HeaderCell>
-                                <Table.HeaderCell>Akcje</Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header>
+                <Dimmer active={this.state.loading} inverted>
+                    <Loader>Trwa ładowanie...</Loader>
+                </Dimmer>
+                <Table basic='very' compact selectable>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell textAlign="center">
+                                <Checkbox fitted/>
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>Zdjęcie</Table.HeaderCell>
+                            <Table.HeaderCell>Osoba</Table.HeaderCell>
+                            <Table.HeaderCell>PESEL</Table.HeaderCell>
+                            <Table.HeaderCell>Telefon</Table.HeaderCell>
+                            <Table.HeaderCell>Aktualizowane</Table.HeaderCell>
+                            <Table.HeaderCell>Akcje</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
 
-                        <Table.Body>
-                            {this.renderDataList()}
-                        </Table.Body>
-                    </Table>
-                </Segment>
+                    <Table.Body>
+                        {this.renderDataList()}
+                    </Table.Body>
+                </Table>
+
             </div>
         );
     }
