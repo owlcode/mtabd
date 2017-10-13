@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Navbar from './Navbar/Navbar';
-import {Sidebar, Segment, Menu, Icon, Label} from 'semantic-ui-react'
+import {Icon, Label, Menu, Segment, Sidebar} from 'semantic-ui-react'
 import {Link} from 'react-router';
+import { ToastContainer } from 'react-toastify';
 import Memory from "../Library/Memory";
 import {settings} from "../settings";
 
@@ -26,6 +27,10 @@ class App extends Component {
         }
     }
 
+    toggleMenu() {
+        this.setState({visible: !this.state.visible})
+    }
+
     render() {
         const {visible} = this.state;
         return (
@@ -47,7 +52,7 @@ class App extends Component {
                         </Link>
                         <Link to='/chat'>
                             <Menu.Item name='chat'>
-                                <Label color='teal' floating>2254</Label>
+                                <Label color='teal' circular>24</Label>
                                 <Icon name='wechat'/>
                                 Chat
                             </Menu.Item>
@@ -66,10 +71,13 @@ class App extends Component {
                         </Link>
                     </Sidebar>
                     <Sidebar.Pusher className="SidebarPusher">
-                        <Navbar></Navbar>
+                        <Navbar toggleMenu={this.toggleMenu.bind(this)}></Navbar>
                         {this.props.children}
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
+                <ToastContainer
+                    position="bottom-right"
+                />
             </div>
         );
     }

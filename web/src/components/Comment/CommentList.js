@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {List, Segment, Header, Icon} from 'semantic-ui-react';
+import {Header, Icon, List, Segment} from 'semantic-ui-react';
 import {settings} from '../../settings';
 
 class CommentList extends Component {

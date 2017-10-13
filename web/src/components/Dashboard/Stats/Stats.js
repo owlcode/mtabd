@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Statistic, Icon, Header, Divider} from 'semantic-ui-react'
+import {Divider, Header, Icon, Segment, Statistic} from 'semantic-ui-react'
 
 class Stats extends Component {
     render() {

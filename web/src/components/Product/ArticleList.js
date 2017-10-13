@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Header, Icon, Table} from 'semantic-ui-react';
+import {Header, Icon, Segment, Table} from 'semantic-ui-react';
 import {settings} from '../../settings';
 import ArticleRow from './ProductRow';
 

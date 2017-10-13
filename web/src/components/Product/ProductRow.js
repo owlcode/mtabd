@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Image} from 'semantic-ui-react';
+import {Image, Table} from 'semantic-ui-react';
 import {settings} from "../../settings";
 
 class ArticleRow extends Component {

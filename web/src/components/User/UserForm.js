@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import {Segment, Input, Header, Icon, Form, Checkbox, Button} from 'semantic-ui-react'
+import {Button, Checkbox, Form, Header, Icon, Input, Segment} from 'semantic-ui-react'
+import { toast } from 'react-toastify';
 import {settings} from '../../settings';
 
 class UserForm extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             name: '',
             surname: '',
@@ -32,9 +34,12 @@ class UserForm extends Component {
             headers: headers
         })
             .then(res => res.json())
-            .then(content => content.data)
+            .then(content => {
+                toast.success('Użytkownik ' + content.name + ' został pomyślnie dodany');
+                this.props.closeForm();
+            })
             .catch(err => {
-                console.error(err);
+                toast.error(err.message);
             });
 
         event.preventDefault();
@@ -50,7 +55,7 @@ class UserForm extends Component {
 
     render() {
         return (
-            <Segment.Group raised>
+            <Segment.Group raised compact>
                 <Segment color="green">
                     <Header as='h2' size='medium'>
                         <Icon name='user'/>

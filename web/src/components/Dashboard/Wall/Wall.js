@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Feed, Icon, Header, Dimmer, Loader} from 'semantic-ui-react'
+import {Dimmer, Feed, Header, Icon, Loader, Segment} from 'semantic-ui-react'
 import {settings} from "../../../settings";
 
 class Wall extends Component {

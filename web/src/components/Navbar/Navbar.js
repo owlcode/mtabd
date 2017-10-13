@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Icon, Grid, Input, Dimmer} from 'semantic-ui-react'
+import {Dimmer, Grid, Icon, Input} from 'semantic-ui-react'
 import './Navbar.css';
 
 class Navbar extends Component {
@@ -22,7 +22,7 @@ class Navbar extends Component {
                 <Grid>
                     <Grid.Row style={firstRow}>
                         <Grid.Column floated='left' width={6}>
-                            <img src="./logo.png" className="App-logo" alt="logo"/>
+                            <img src="./logo.png" className="App-logo" alt="logo" onClick={this.props.toggleMenu}/>
                         </Grid.Column>
                         <Grid.Column floated='right' textAlign='right' width={6} verticalAlign='middle'>
                             <Icon name='search'/>

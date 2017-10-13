@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Header, Icon, Segment, Container} from 'semantic-ui-react'
+import {Button, Container, Header, Icon, Segment} from 'semantic-ui-react'
 
 class Product extends Component {
     constructor(props) {

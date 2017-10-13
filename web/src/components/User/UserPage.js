@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import UserForm from './UserForm'
 import UserList from './UserList'
-import {Button, Icon, Grid, Breadcrumb, Label, Dimmer} from 'semantic-ui-react'
+import {Breadcrumb, Button, Dimmer, Grid, Icon, Label} from 'semantic-ui-react'
 import PageHeader from '../Page/Header';
 
 class UserPage extends Component {
@@ -59,8 +59,9 @@ class UserPage extends Component {
                 </Grid>
 
                 <Dimmer active={this.state.creating} onClickOutside={this.handleClose} page>
-                    <UserForm/>
+                    <UserForm closeForm={this.handleClose.bind(this)}/>
                 </Dimmer>
+
                 <UserList/>
             </div>
         )

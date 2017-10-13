@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input, TextArea, Form, Button, Header, Icon, Segment,Grid, Breadcrumb, Label} from 'semantic-ui-react'
+import {Breadcrumb, Button, Form, Grid, Header, Icon, Input, Label, Segment, TextArea} from 'semantic-ui-react'
 import {settings} from '../../settings';
 
 var data = {

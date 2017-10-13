@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Segment, Checkbox, Dimmer, Loader} from 'semantic-ui-react';
+import {Checkbox, Dimmer, Loader, Segment, Table} from 'semantic-ui-react';
 import UserRow from './UserRow';
 import {settings} from '../../settings';
 
