@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Header, Icon, Image, Message, Segment} from 'semantic-ui-react'
+import {Container, Grid, Breadcrumb, Icon, Image, Message, Segment} from 'semantic-ui-react'
 import {settings} from "../../settings";
 
 class ChatBox extends Component {
@@ -30,7 +30,7 @@ class ChatBox extends Component {
 
         (this.state.data || []).forEach((item, index) => {
             list.push(
-                <Message key={index} compact color='blue'>
+                <Message key={index} color={Math.floor(Math.random() * 10) % 2 ? 'grey' : 'blue'}>
                     <Image avatar src='http://semantic-ui.com/images/avatar2/small/rachel.png'></Image>
                     <small>
                         <i>{item.createdAt}</i>
@@ -46,21 +46,9 @@ class ChatBox extends Component {
 
     render() {
         return (
-            <Segment.Group raised>
-                <Segment color="green">
-                    <Header as='h2' size='medium'>
-                        <Icon name='keyboard'/>
-                        <Header.Content>
-                            ChatBox
-                        </Header.Content>
-                    </Header>
-                </Segment>
-                <Segment>
-                    <Container text>
-                        {this.renderMessageList()}
-                    </Container>
-                </Segment>
-            </Segment.Group>
+            <div className="ChatBox">
+                {this.renderMessageList()}
+            </div>
         );
     }
 

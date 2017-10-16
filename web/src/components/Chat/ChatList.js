@@ -55,20 +55,11 @@ class ChatList extends Component {
     render() {
         if (this.state.data) {
             return (
-                <Segment.Group>
-                    <Segment>
-                        <Header as='h2' size='medium'>
-                            <Icon name='chat'/>
-                            <Header.Content>
-                                ChatList
-                            </Header.Content>
-                        </Header>
-                    </Segment>
+                <div className="chatList">
                     <Grid doubling columns={4}>
                         {this.renderDataList()}
                     </Grid>
-                </Segment.Group>
-
+                </div>
             );
         }
     }

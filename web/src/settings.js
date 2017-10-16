@@ -1,3 +1,3 @@
 export const settings = {
-    api: 'https://localhost:3001'
+    api: 'https://vps331205.ovh.net:3001'
 };

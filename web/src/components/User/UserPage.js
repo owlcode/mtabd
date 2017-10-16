@@ -30,13 +30,10 @@ class UserPage extends Component {
     handleClose = () => this.setState({creating: false})
 
     render() {
-        let secondRow = {
-            paddingTop: '0'
-        }
         return (
             <div className="UserPage">
                 <Grid>
-                    <Grid.Row style={secondRow}>
+                    <Grid.Row>
                         <Grid.Column floated='left' width={6} verticalAlign='middle'>
                             <Icon name='marker'/>
                             <Breadcrumb icon='right angle' sections={this.sections}/>

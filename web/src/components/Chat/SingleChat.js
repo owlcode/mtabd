@@ -1,9 +1,26 @@
 import React, {Component} from 'react';
 import ChatBox from "./ChatBox";
-import {Button, Input} from "semantic-ui-react";
+import {Button, Input, Grid, Breadcrumb, Icon} from "semantic-ui-react";
 import {settings} from "../../settings";
 
 class SingleChat extends Component {
+    sections = [
+        {
+            key: 'Home',
+            content: 'mta.bd',
+            href: '/'
+        }, {
+            key: 'Store',
+            content: 'Chat',
+            href: '/chat'
+        }, {
+            key: 'Message',
+            content: 'Rozmowa#4583',
+            href: '/chat',
+            active: true
+        }
+    ];
+
     constructor(props) {
         super(props);
         this.state = {
@@ -52,7 +69,16 @@ class SingleChat extends Component {
     render() {
         return (
             <div className="SingleChat">
+                <Grid>
+                    <Grid.Row>
+                        <Grid.Column floated='left' width={6} verticalAlign='middle'>
+                            <Icon name='marker'/>
+                            <Breadcrumb icon='right angle' sections={this.sections}/>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
                 <ChatBox id={this.props.params.talkId}/>
+
                 <Input label='Nowa wiadomość' placeholder='Wpisz wiadomość' name='text'
                        value={this.state.text} onChange={this.handleInputChange}/>
                 <Button onClick={this.handleSubmit}>Wyślij</Button>
