@@ -24,13 +24,13 @@ public class UserController {
 
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
     @ResponseBody
-    public UserDTO getUser(@PathVariable("id") Long id, Pageable pageable) {
+    public UserDTO getUser(@PathVariable("id") Long id) {
         return userRepository.findOneUserDTO(id);
     }
 
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@PathVariable("id") Long id, Pageable pageable) {
+    public void deleteUser(@PathVariable("id") Long id) {
         userRepository.delete(id);
     }
 
