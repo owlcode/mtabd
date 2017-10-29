@@ -5,3 +5,5 @@ spring:
 security:
   basic:
     enabled: false
+logging:
+  level: debug

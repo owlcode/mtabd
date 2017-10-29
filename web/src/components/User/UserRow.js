@@ -13,10 +13,10 @@ class UserRow extends Component {
         }
     }
 
-    remove(props) {
-        fetch(settings.api + '/api/user', {
+    remove(id) {
+        fetch(settings.api + '/api/user/' + id, {
             method: 'delete',
-            protocol: 'https:'
+            headers: new Headers({})
         })
             .then(res => res.json())
             .then(content => {
@@ -64,7 +64,7 @@ class UserRow extends Component {
                     </Dimmer>
 
                     <Icon name='edit'/>
-                    <Icon name='remove'/>
+                    <Icon name='remove' onClick={() => this.remove(this.props.id)}/>
 
                 </Table.Cell>
             </Table.Row>

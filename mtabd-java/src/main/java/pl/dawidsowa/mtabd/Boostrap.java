@@ -11,7 +11,7 @@ import pl.dawidsowa.mtabd.repository.MessageRepository;
 import pl.dawidsowa.mtabd.repository.UserRepository;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +28,7 @@ public class Boostrap {
         user.setFirstName("Jan");
         user.setLastName("Kowalski");
         user.setEmail("jan.kowalski@example.com");
-        user.setBirth(LocalDateTime.of(1984, 12, 12, 12, 12));
+        user.setBirth(LocalDate.of(1984, 12, 12));
         user.setUsername("user");
         user.setPassword(passwordEncoder.encode("password"));
 
@@ -52,6 +52,7 @@ public class Boostrap {
         msg.setUser(user);
         msg.setIpv4("1.2.3.4");
         msg.setUserAgent("Mozilla 69/666 [Linuxxx]");
+        msg = messageRepository.save(msg);
         chat.getMessages().add(msg);
         chatRepository.save(chat);
         //messageRepository.save(msg);

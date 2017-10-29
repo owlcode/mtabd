@@ -2,6 +2,7 @@ package pl.dawidsowa.mtabd.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public interface UserDTO {
@@ -10,8 +11,8 @@ public interface UserDTO {
     String getFirstName();
     String getLastName();
     String getEmail();
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    LocalDateTime getBirth();
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    LocalDate getBirth();
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     LocalDateTime getCreatedAt();
 }

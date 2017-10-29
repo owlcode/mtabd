@@ -8,13 +8,11 @@ class UserForm extends Component {
         super(props);
 
         this.state = {
-            name: '',
-            surname: '',
+            firstName: '',
+            lastName: '',
             username: '',
-            phone: '',
-            mail: '',
-            id: '',
-            status: ''
+            email: '',
+            password: ''
         };
 
         this.handleSubmit = this
@@ -67,22 +65,20 @@ class UserForm extends Component {
                 <Segment>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group widths='equal'>
-                            <Form.Field control={Input} label='Imię' placeholder='Imię' name='name'
-                                        value={this.state.name}
+                            <Form.Field control={Input} label='Imię' placeholder='Imię' name='firstName'
+                                        value={this.state.firstName}
                                         onChange={this.handleInputChange}/>
-                            <Form.Field control={Input} label='Nazwisko' placeholder='Nazwisko' name='surname'
-                                        value={this.state.surname} onChange={this.handleInputChange}/>
+                            <Form.Field control={Input} label='Nazwisko' placeholder='Nazwisko' name='lastName'
+                                        value={this.state.lastName} onChange={this.handleInputChange}/>
                         </Form.Group>
                         <Form.Field control={Input} label='Nazwa użytkownika' placeholder='Nazwa użytkownika'
                                     name='username' value={this.state.username} onChange={this.handleInputChange}/>
-                        <Form.Field control={Input} label='Numer telefonu' placeholder='Numer telefonu' name='phone'
-                                    value={this.state.phone} onChange={this.handleInputChange}/>
-                        <Form.Field control={Input} label='E-mail' placeholder='Adres e-mail' name='mail'
-                                    value={this.state.mail} onChange={this.handleInputChange}/>
-                        <Form.Field control={Input} label='Pesel' placeholder='PESEL' name='id' value={this.state.id}
+                        <Form.Field control={Input} label='E-mail' placeholder='Adres e-mail' name='email'
+                                    value={this.state.email} onChange={this.handleInputChange}/>
+                        <Form.Field control={Input} label='Hasło' placeholder='Hasło' name='password'
+                            value={this.state.password} onChange={this.handleInputChange}/>
+                        <Form.Field control={Input} label='Data urodzin' placeholder='Data urodzin' name='birth' value={this.state.birth}
                                     onChange={this.handleInputChange}/>
-                        <Form.Field control={Checkbox} label='Aktywny użytkownik' name='active'
-                                    value={this.state.status} onChange={this.handleInputChange}/>
                         <Form.Field control={Button}>Zapisz</Form.Field>
                     </Form>
                 </Segment>

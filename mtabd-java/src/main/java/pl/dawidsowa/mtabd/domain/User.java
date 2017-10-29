@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -32,7 +33,7 @@ public class User {
     @Email
     private String email;
 
-    private LocalDateTime birth;
+    private LocalDate birth;
 
     @CreatedDate
     private LocalDateTime createdAt;
