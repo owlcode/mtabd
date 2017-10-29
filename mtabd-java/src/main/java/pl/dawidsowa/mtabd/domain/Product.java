@@ -3,6 +3,7 @@ package pl.dawidsowa.mtabd.domain;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.joda.money.BigMoney;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "products")
+@EntityListeners(AuditingEntityListener.class)
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hibernate_sequence")
