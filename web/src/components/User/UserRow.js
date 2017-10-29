@@ -41,25 +41,22 @@ class UserRow extends Component {
                     <Checkbox onClick={(e) => this.handleCheckboxClick(e)}/>
                 </Table.Cell>
                 <Table.Cell onClick={this.handleOpen}>
-                    <Image src={this.props.photo} shape='rounded' size='mini'/>
-                </Table.Cell>
-                <Table.Cell onClick={this.handleOpen}>
-                    <Header as='h4' image>
-                        <Header.Content>
-                            {this.props.name}
-                            {this.props.surname}
-                            <Header.Subheader>{this.props.status}</Header.Subheader>
-                        </Header.Content>
-                    </Header>
-                </Table.Cell>
-                <Table.Cell onClick={this.handleOpen}>
                     {this.props.id}
                 </Table.Cell>
                 <Table.Cell onClick={this.handleOpen}>
-                    {this.props.phone}
+                    {this.props.username}
                 </Table.Cell>
                 <Table.Cell onClick={this.handleOpen}>
-                    {this.props.updatedAt}
+                    {this.props.firstName} {this.props.lastName}
+                </Table.Cell>
+                <Table.Cell onClick={this.handleOpen}>
+                    {this.props.email}
+                </Table.Cell>
+                <Table.Cell onClick={this.handleOpen}>
+                    {this.props.birth}
+                </Table.Cell>
+                <Table.Cell onClick={this.handleOpen}>
+                    {this.props.createdAt}
                 </Table.Cell>
                 <Table.Cell>
                     <Dimmer active={this.state.preview} onClickOutside={this.handleClose} page>
