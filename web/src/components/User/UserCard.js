@@ -1,5 +1,5 @@
 import React from 'react'
-import {List, Card, Icon, Image, Segment, Header, Grid, Message} from 'semantic-ui-react'
+import {Card, Grid, Header, Icon, Image, List, Message, Segment} from 'semantic-ui-react'
 
 const UserCard = () => (
     <Segment.Group compact>

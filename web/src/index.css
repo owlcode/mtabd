@@ -8,10 +8,6 @@ body {
     margin: 0;
 }
 
-.pusher {
-    padding-right: 150px;
-}
-
 .UserForm {
     max-width: 400px;
     margin: 0 auto;
@@ -23,4 +19,10 @@ label {
 
 .fullScreen {
     min-height: 100vh;
+}
+
+@media (min-width: 992px) {
+    .pusher {
+        padding-right: 150px;
+    }
 }

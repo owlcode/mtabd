@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import DealForm from './DealForm'
 import DealList from './DealList'
 import {Breadcrumb, Button, Dimmer, Grid, Icon} from 'semantic-ui-react'
-import PageHeader from '../Page/Header';
 
 class DealPage extends Component {
 

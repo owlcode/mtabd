@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Checkbox, Form, Header, Icon, Input, Segment} from 'semantic-ui-react'
-import { toast } from 'react-toastify';
+import {Button, Form, Header, Icon, Input, Segment} from 'semantic-ui-react'
+import {toast} from 'react-toastify';
 import {settings} from '../../settings';
 
 class UserForm extends Component {

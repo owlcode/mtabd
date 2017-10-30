@@ -31,7 +31,6 @@ class ProductPage extends Component {
     render() {
         return (
             <div className="ProductPage">
-                {/*<ArticleList/>*/}
                 <Product/>
             </div>
         )

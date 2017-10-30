@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, IndexRoute} from 'react-router';
+import {IndexRoute, Route, Router} from 'react-router';
 import Dashboard from './components/Dashboard/Dashboard';
 import UserPage from './components/User/UserPage';
 import CommentPage from './components/Comment/CommentPage';

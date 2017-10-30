@@ -1,14 +1,13 @@
-import React from 'react'
-import {Button, Form, Grid, Header, Image, Segment} from 'semantic-ui-react'
-import {Link} from "react-router";
+import React, {PropTypes} from 'react'
+import {Form, Grid, Image, Segment} from 'semantic-ui-react'
 
-const LoginForm = () => (
+const LoginForm = ({
+                       onSubmit,
+                       onChange,
+                       errors,
+                       user,
+                   }) => (
     <div className='login-form'>
-        {/*
-      Heads up! The styles below are necessary for the correct render of this example.
-      You can do same with CSS, the main idea is that all the elements up to the `Grid`
-      below must have a height of 100%.
-    */}
         <style>
             {` body > div,
         body > div > div,
@@ -25,28 +24,44 @@ const LoginForm = () => (
             <Grid.Column style={{
                 maxWidth: 450
             }}>
-                <Image src='/logo.png'/>
-                <Header as='h2' color='teal' textAlign='center'>
-                    {' '} Log-in to your account
-                </Header>
-                <Form size='large'>
+                <Image src='/logo.png' style={{
+                    marginBottom: 20
+            }} />
+                <Form size='large' onSubmit={onSubmit}>
                     <Segment>
-                        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address'/>
+
+                        <Form.Input fluid
+                                    icon='user'
+                                    name='name'
+                                    value={user.name}
+                                    onChange={onChange}
+                                    iconPosition='left'
+                                    placeholder='Użytkownik'/>
+
                         <Form.Input
                             fluid
+                            name='password'
+                            value={user.password}
                             icon='lock'
+                            onChange={onChange}
                             iconPosition='left'
-                            placeholder='Password'
+                            placeholder='Hasło'
                             type='password'/>
 
-                        <Link to='/dashboard'>
-                            <Button color='teal' fluid size='large'>Login</Button>
-                        </Link>
+                        <Form.Button color='teal' fluid size='large' content='Login'/>
+
                     </Segment>
                 </Form>
             </Grid.Column>
         </Grid>
     </div>
-)
+);
+
+LoginForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    errors: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
+};
 
 export default LoginForm

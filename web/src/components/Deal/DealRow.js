@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Checkbox, Dimmer, Header, Icon, Image, Question, Table} from 'semantic-ui-react';
+import {Checkbox, Dimmer, Icon, Table} from 'semantic-ui-react';
 import DealCard from './DealCard';
 import {settings} from "../../settings";
 import {toast} from 'react-toastify';

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Divider, Header, Icon, Image, List, Segment, Grid} from 'semantic-ui-react';
+import {Grid, Image, List, Segment} from 'semantic-ui-react';
 import {Link} from 'react-router';
 import {settings} from "../../settings";
 
@@ -29,16 +29,14 @@ class ChatList extends Component {
 
         this.state.data.forEach(item => {
             list.push(
-                <Grid.Column key={item._id}>
-                    <Link to={'chat/single/' + item._id}>
+                <Grid.Column key={item.id}>
+                    <Link to={'chat/single/' + item.id}>
                         <Segment raised>
                             <Image avatar src='http://semantic-ui.com/images/avatar2/small/rachel.png' size='tiny'/>
                             <List.Content>
                                 <h3>Jan Kaczkoski</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Aliquam. </p>
+                                <p>{item.id + item.messageId}</p>
+
                                 <i>{item.createdAt}</i>
 
                             </List.Content>

@@ -4,7 +4,14 @@ export default class Memory {
     }
 
     static read(key) {
-        return JSON.parse(localStorage.getItem(key));
+        let out;
+        try {
+            out = JSON.parse(localStorage.getItem(key));
+            return out;
+        } catch (e) {
+            return null;
+        }
+
     }
 
     static clear(key) {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Dimmer, Grid, Icon, Input, Popup} from 'semantic-ui-react'
+import {Grid, Icon, Input, Popup} from 'semantic-ui-react'
 import './Navbar.css';
+import Memory from "../../Library/Memory";
 
 class Navbar extends Component {
     constructor(props) {
@@ -14,21 +15,28 @@ class Navbar extends Component {
         this.setState({searching: true})
     }
     handleClose = () => this.setState({searching: false})
+    getFullUserName = () => {
+        let user = Memory.read('user');
+        return user.lastName + ', ' + user.firstName + ' (' + user.username + ')';
+    }
 
     render() {
         return (
             <div className="Navbar">
                 <Grid>
                     <Grid.Row>
+                        <Grid.Column floated='left' only='tablet mobile'>
+                            <Icon name='bars' onClick={this.props.toggleMenu}/>
+                        </Grid.Column>
                         <Grid.Column floated='left' width={4}>
-                            <img src="./logo.png" className="App-logo" alt="logo" onClick={this.props.toggleMenu}/>
+                            <img src="./logo.png" className="App-logo" alt="logo"/>
                         </Grid.Column>
                         <Grid.Column floated='right' textAlign='right' width={8} verticalAlign='middle'>
 
                             <Popup
-                                key='Dowolny, Użytkownik (PL)'
+                                key={this.getFullUserName()}
                                 trigger={<Icon circular inverted color='teal' name='user'/>}
-                                header='Dowolny, Użytkownik (PL)'
+                                header={this.getFullUserName()}
                             />
 
 

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import UserForm from './UserForm'
 import UserList from './UserList'
 import {Breadcrumb, Button, Dimmer, Grid, Icon} from 'semantic-ui-react'
-import PageHeader from '../Page/Header';
 
 class UserPage extends Component {
 

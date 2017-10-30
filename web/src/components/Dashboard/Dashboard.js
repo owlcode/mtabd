@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Breadcrumb, Embed, Grid, Header, Icon, Progress, Rating, Segment} from 'semantic-ui-react'
 import Wall from './Wall/Wall';
-import {settings} from "../../settings";
 import Stats from "./Stats/Stats";
 
 class Dashboard extends Component {
@@ -49,7 +48,8 @@ class Dashboard extends Component {
                             <Wall></Wall>
                         </Grid.Column>
                         <Grid.Column>
-                            <Segment.Group raised>
+                            <Stats></Stats>
+                            <Segment.Group>
                                 <Segment color="green">
                                     <Header as='h2' size='medium'>
                                         <Icon name='user'/>
@@ -65,8 +65,8 @@ class Dashboard extends Component {
                                     <Rating icon='heart' defaultRating={7} maxRating={10}/>
                                 </Segment>
                             </Segment.Group>
-                            <Stats></Stats>
-                            <Segment.Group raised>
+
+                            <Segment.Group>
                                 <Segment>
                                     <Embed
                                         id='O6Xo21L0ybE'

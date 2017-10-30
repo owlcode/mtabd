@@ -1,3 +1,13 @@
 .App-logo {
     max-width: 14rem;
 }
+
+.Navbar .ui.input {
+    display: none;
+}
+
+@media (min-width: 982px) {
+    .Navbar .ui.input {
+        display: inline-block;
+    }
+}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Grid, Breadcrumb, Icon, Image, Message, Segment} from 'semantic-ui-react'
+import {Image, Message} from 'semantic-ui-react'
 import {settings} from "../../settings";
 
 class ChatBox extends Component {

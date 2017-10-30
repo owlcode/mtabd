@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ChatBox from "./ChatBox";
-import {Button, Input, Grid, Breadcrumb, Icon} from "semantic-ui-react";
+import {Breadcrumb, Button, Grid, Icon, Input} from "semantic-ui-react";
 import {settings} from "../../settings";
 
 class SingleChat extends Component {

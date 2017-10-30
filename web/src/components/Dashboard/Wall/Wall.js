@@ -14,7 +14,7 @@ class Wall extends Component {
         fetch(settings.api + '/api/message')
             .then(res => res.json())
             .then(content => {
-                this.setState({data: content, loading: false});
+                this.setState({data: content.splice(0,10), loading: false});
             })
     }
 
@@ -57,7 +57,7 @@ class Wall extends Component {
         return (
             <div className="Comment">
 
-                <Segment.Group raised>
+                <Segment.Group>
                     <Segment color="green">
                         <Header as='h2' size='medium'>
                             <Icon name='feed'/>

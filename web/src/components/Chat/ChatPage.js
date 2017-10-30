@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ChatList from "./ChatList";
-import {Grid, Icon, Breadcrumb, Button} from "semantic-ui-react";
+import {Breadcrumb, Button, Grid, Icon} from "semantic-ui-react";
+
 class ChatPage extends Component {
     sections = [
         {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Checkbox, Dimmer, Loader, Segment, Table} from 'semantic-ui-react';
+import {Checkbox, Dimmer, Loader, Table} from 'semantic-ui-react';
 import UserRow from './UserRow';
 import {settings} from '../../settings';
 
@@ -24,7 +24,7 @@ class UserList extends Component {
 
         this.state.data.forEach(item => {
             list.push(
-                <UserRow {...item} key={item._id}></UserRow>
+                <UserRow {...item} key={item.id}></UserRow>
             );
         }, this);
 
@@ -32,10 +32,6 @@ class UserList extends Component {
     }
 
     render() {
-        let style = {
-            paddingLeft: 'inhereit'
-        }
-
         return (
             <div className="userList">
 

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Checkbox, Dimmer, Loader, Segment, Table} from 'semantic-ui-react';
+import {Checkbox, Dimmer, Loader, Table} from 'semantic-ui-react';
 import DealRow from './DealRow';
-import {settings} from '../../settings';
 
 class DealList extends Component {
     constructor(props) {
@@ -13,9 +12,16 @@ class DealList extends Component {
         };
 
         // fetch(settings.api + '/api/Deal')
-        Promise.resolve([{name: 'Deal1', startDate: Date.now(), endDate: Date.now(), status: 'Aktywna', description: 'Lorem i'},
-            {name: 'Deal1', startDate: Date.now(), endDate: Date.now(), description: 'Lorem i', status: 'Nieaktywna'},
-            {name: 'Deal1', startDate: Date.now(), endDate: Date.now(), status: 'Aktywna', description: 'Lorem i'}])
+        Promise.resolve([{
+            id: '1',
+            name: 'Deal1',
+            startDate: Date.now(),
+            endDate: Date.now(),
+            status: 'Aktywna',
+            description: 'Lorem i'
+        },
+            {id: '2',name: 'Deal1', startDate: Date.now(), endDate: Date.now(), description: 'Lorem i', status: 'Nieaktywna'},
+            {id: '3',name: 'Deal1', startDate: Date.now(), endDate: Date.now(), status: 'Aktywna', description: 'Lorem i'}])
         // .then(res => res.json())
             .then(content => {
                 this.setState({data: content, loading: false});
@@ -27,7 +33,7 @@ class DealList extends Component {
 
         this.state.data.forEach(item => {
             list.push(
-                <DealRow {...item} key={item._id}></DealRow>
+                <DealRow {...item} key={item.id}></DealRow>
             );
         }, this);
 
@@ -35,10 +41,6 @@ class DealList extends Component {
     }
 
     render() {
-        let style = {
-            paddingLeft: 'inhereit'
-        }
-
         return (
             <div className="DealList">
 

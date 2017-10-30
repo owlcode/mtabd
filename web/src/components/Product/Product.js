@@ -29,7 +29,7 @@ class Product extends Component {
             <Segment.Group raised>
                 <Segment color="green">
                     <Header as='h2' size='medium'>
-                        <Icon name='product'/>
+                        <Icon name='suitcase'/>
                         <Header.Content>
                             Produkt
                         </Header.Content>
@@ -39,7 +39,7 @@ class Product extends Component {
                     <Container text>
                         <Header>
                             {this.state.name}
-                            <Button.Group floated='right'>
+                            <Button.Group>
                                 <Button negative>Usuń</Button>
                                 <Button color="blue">Edytuj</Button>
                             </Button.Group>

@@ -1,4 +1,5 @@
 import Settings from './Settings';
+
 class Fetch {
     static get(url) {
         return new Promise((resolve, reject) => {
