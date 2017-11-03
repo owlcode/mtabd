@@ -22,10 +22,7 @@ Rebandel, Skrobich, Sowa
 
 11. Aplikacja powinna być bezpieczna, wygodna w obsłudze i estetyczna. Zastosowanie podstawowych mechanizmów bezpieczeństwa np membership. 
 
-*6. ~~aplikacja może być oparta o dowolny framework ale framefork nie może wymuszać na aplikacji architektury niespójnej , wykluczającej się z architekturą z punktu 4.~~
-7. ~~Możliwość użycia C#/.NET, Java, Python. Klient powinien być napisany w HTML5 i Javascript. Konieczne użycie bibliotek i frameworków (np.: Kendo, Angular, JQuery, Backbone,  Underscore,Mustahe ) css w osobnych plikach. ~~
-8. ~~Wykorzystanie repozytorium: SVM, TFS lub GitHub~~
-1. ~~aplikacja bazodanowa: baza danych relacyjna (ms sql, Oracle, postgres, mysql)*
+~~6.aplikacja może być oparta o dowolny framework ale framefork nie może wymuszać na aplikacji architektury niespójnej , wykluczającej się z architekturą z punktu 4.7.Możliwość użycia C#/.NET, Java, Python. Klient powinien być napisany w HTML5 i Javascript. Konieczne użycie bibliotek i frameworków (np.: Kendo, Angular, JQuery, Backbone,  Underscore,Mustahe ) css w osobnych plikach. 8. Wykorzystanie repozytorium: SVM, TFS lub GitHub 1.aplikacja bazodanowa: baza danych relacyjna (ms sql, Oracle, postgres, mysql)~~
 
 ## Description
 ### Wstęp
