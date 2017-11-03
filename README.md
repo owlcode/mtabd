@@ -8,28 +8,24 @@ Rebandel, Skrobich, Sowa
 [Jenkins]()
 
 ## Todos
-### Backend
-* create app
-* configure unit tests
-* configure sql connection
-* create users REST API endpoint
-* create message REST API endpoint
-* configure SSL, H/2, SSE, no-auth
-* create chat SSE endpoint to push new messages
+2) Minimalna liczba tabel w bazie: *11*. Powinny być zaimplementowane w bazie 3 typy relacji 1-*, *-* i 1-1. Użycie check, unique, primary Key, index, constraints 
 
-### Frontend
-* add user required validation
+3. Aplikacja wykorzystuje do łączenia się z bazą ~~przede wszystkim system ORM a także~~ surowy SQL, Użycie procedur wbudowanych 
 
-**DONE** *app logo, remove obsolete pages, add toast information, fix closing modal after adding user*
+4. Aplikacja jest zaimplementowana zgodnie z następującą architekturą (walidacja JS, komunikacja przez serwisy, wielowarstwowość logiki biznesowej (moduł walidacji biznesowej, operacji biznesowych i repozytorium dostępu do bazy danych), wykorzystanie obiektów transportowych. Rozszerzony wzorzec mvc 
 
-### Database
-**DONE** *refactor field names, create additional relations*
+5. Logowanie błędów aplikacji do pliku i do bazy danych. 
 
-### Tools
-* automate build, configure jenkins build server
+9. Implementacja testów jednostkowych. Testy bazy na mockach. Postawienie i zresetowanie bazy ze skryptu. 
 
-### Testing
-* add e2e test
+10. Baza danych zoptymalizowana zgodnie z następującymi regułami (tabele słownikowe, klucze obce, główne, ograniczenia na typach danych)
+
+11. Aplikacja powinna być bezpieczna, wygodna w obsłudze i estetyczna. Zastosowanie podstawowych mechanizmów bezpieczeństwa np membership. 
+
+*6. ~~aplikacja może być oparta o dowolny framework ale framefork nie może wymuszać na aplikacji architektury niespójnej , wykluczającej się z architekturą z punktu 4.~~
+7. ~~Możliwość użycia C#/.NET, Java, Python. Klient powinien być napisany w HTML5 i Javascript. Konieczne użycie bibliotek i frameworków (np.: Kendo, Angular, JQuery, Backbone,  Underscore,Mustahe ) css w osobnych plikach. ~~
+8. ~~Wykorzystanie repozytorium: SVM, TFS lub GitHub~~
+1. ~~aplikacja bazodanowa: baza danych relacyjna (ms sql, Oracle, postgres, mysql)*
 
 ## Description
 ### Wstęp
