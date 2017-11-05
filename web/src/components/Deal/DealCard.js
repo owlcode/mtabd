@@ -32,7 +32,7 @@ const DealCard = () => (
                             </Card.Content>
                             <Card.Content extra>
                                 <a>
-                                    <Icon name='Deal'/>
+                                    <Icon name='cube'/>
                                     22 Friends
                                 </a>
                             </Card.Content>
@@ -46,7 +46,7 @@ const DealCard = () => (
 
                         <div style={({color: 'black'})}>
                             <List>
-                                <List.Item icon='Deals' content='Semantic UI'/>
+                                <List.Item icon='cube' content='Semantic UI'/>
                                 <List.Item icon='marker' content='New York, NY'/>
                                 <List.Item icon='mail'
                                            content={<a href='mailto:jack@semantic-ui.com'>jack@semantic-ui.com</a>}/>

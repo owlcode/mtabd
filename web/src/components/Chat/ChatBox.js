@@ -10,19 +10,17 @@ class ChatBox extends Component {
         this.state = {
             data: undefined
         };
-        this.img = {};
 
-        this.source = new EventSource(settings.api + '/sse/talk/' + this.props.id);
-
-        this.source.onmessage = (e) => {
-            this.setState({data: JSON.parse(e.data)});
-        };
+        // this.source = new EventSource(settings.api + '/sse/talk/' + this.props.id);
+        //
+        // this.source.onmessage = (e) => {
+        //     this.setState({data: JSON.parse(e.data)});
+        // };
         const headers = new Headers({'Content-Type': 'application/json; charset=UTF-8'});
         fetch(settings.api + '/api/message', {
-            method: 'POST',
-            body: JSON.stringify({}),
             headers: headers
-        })
+        }).then(res => res.json())
+            .then(res => this.setState({data: res}))
     }
 
     renderMessageList() {
@@ -53,7 +51,7 @@ class ChatBox extends Component {
     }
 
     componentWillUnmount() {
-        this.source.close();
+        // this.source.close();
     }
 }
 

@@ -1,28 +1,12 @@
 import React, {Component} from 'react';
 import {Checkbox, Dimmer, Loader, Table} from 'semantic-ui-react';
 import UserRow from './UserRow';
-import {settings} from '../../settings';
 
 class UserList extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            data: [],
-            loading: true
-        };
-
-        fetch(settings.api + '/api/user')
-            .then(res => res.json())
-            .then(content => {
-                this.setState({data: content, loading: false});
-            });
-    }
-
     renderDataList() {
         let list = [];
 
-        this.state.data.forEach(item => {
+        this.props.data.forEach(item => {
             list.push(
                 <UserRow {...item} key={item.id}></UserRow>
             );
@@ -35,7 +19,7 @@ class UserList extends Component {
         return (
             <div className="userList">
 
-                <Dimmer active={this.state.loading} inverted>
+                <Dimmer active={this.props.loading} inverted>
                     <Loader>Trwa ładowanie...</Loader>
                 </Dimmer>
                 <Table basic='very' compact selectable>
@@ -50,7 +34,6 @@ class UserList extends Component {
                             <Table.HeaderCell>Email</Table.HeaderCell>
                             <Table.HeaderCell>Data urodzin</Table.HeaderCell>
                             <Table.HeaderCell>Data rejestracji</Table.HeaderCell>
-                            <Table.HeaderCell>Akcje</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
 

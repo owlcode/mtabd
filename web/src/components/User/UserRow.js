@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {Checkbox, Dimmer, Icon, Table} from 'semantic-ui-react';
+import {Checkbox, Dimmer, Table} from 'semantic-ui-react';
 import UserCard from './UserCard';
-import {settings} from "../../settings";
-import {toast} from 'react-toastify';
 
 class UserRow extends Component {
     constructor(props) {
@@ -13,26 +11,12 @@ class UserRow extends Component {
         }
     }
 
-    remove(id) {
-        fetch(settings.api + '/api/user/' + id, {
-            method: 'delete',
-            headers: new Headers({})
-        })
-            .then(res => res.json())
-            .then(content => {
-                toast.success('Użytkownik został pomyślnie usunięty')
-            }).catch(err => {
-            toast.error(err.message)
-        })
-    }
-
-    handleOpen = () => {
-        this.setState({preview: true})
-    }
+    handleOpen = () => this.setState({preview: true})
     handleClose = () => this.setState({preview: false})
     handleCheckboxClick = (event) => {
         event.preventDefault();
     }
+
     render() {
         return (
 
@@ -57,16 +41,12 @@ class UserRow extends Component {
                 </Table.Cell>
                 <Table.Cell onClick={this.handleOpen}>
                     {this.props.createdAt}
-                </Table.Cell>
-                <Table.Cell>
+
                     <Dimmer active={this.state.preview} onClickOutside={this.handleClose} page>
                         <UserCard/>
                     </Dimmer>
-
-                    <Icon name='edit'/>
-                    <Icon name='remove' onClick={() => this.remove(this.props.id)}/>
-
                 </Table.Cell>
+
             </Table.Row>
 
         );

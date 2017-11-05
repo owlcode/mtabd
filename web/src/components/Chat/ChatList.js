@@ -12,11 +12,11 @@ class ChatList extends Component {
             data: []
         };
 
-        this.source = new EventSource(settings.api + '/sse/talk');
-
-        this.source.onmessage = (e) => {
-            this.setState({data: [JSON.parse(e.data)]});
-        };
+        // this.source = new EventSource(settings.api + '/sse/talk');
+        //
+        // this.source.onmessage = (e) => {
+        //     this.setState({data: [JSON.parse(e.data)]});
+        // };
 
         fetch(settings.api + '/api/talk')
             .then(res => res.json())
@@ -63,7 +63,7 @@ class ChatList extends Component {
     }
 
     componentWillUnmount() {
-        this.source.close();
+        // this.source.close();
     }
 }
 

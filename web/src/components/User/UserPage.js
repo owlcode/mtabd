@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import UserForm from './UserForm'
 import UserList from './UserList'
 import {Breadcrumb, Button, Dimmer, Grid, Icon} from 'semantic-ui-react'
+import {settings} from "../../settings";
+import {toast} from "react-toastify";
 
 class UserPage extends Component {
 
@@ -21,12 +23,24 @@ class UserPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            creating: false
-        }
+            creating: false,
+            data: [],
+            loading: true
+        };
+
+        fetch(settings.api + '/api/user')
+            .then(res => res.json())
+            .then(content => {
+                this.setState({data: content, loading: false});
+            })
+            .catch(err => toast.error('Wystąpił błąd pobierania danych'))
     }
 
     handleOpen = () => this.setState({creating: true})
-    handleClose = () => this.setState({creating: false})
+    handleClose = () => {
+
+        this.setState({creating: false})
+    }
 
     render() {
         return (
@@ -47,7 +61,7 @@ class UserPage extends Component {
                     <UserForm closeForm={this.handleClose.bind(this)}/>
                 </Dimmer>
 
-                <UserList/>
+                <UserList loading={this.state.loading} data={this.state.data}/>
             </div>
         )
     }

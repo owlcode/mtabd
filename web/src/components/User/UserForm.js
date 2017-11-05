@@ -32,12 +32,15 @@ class UserForm extends Component {
             headers: headers
         })
             .then(res => res.json())
-            .then(content => {
-                toast.success('Użytkownik ' + content.name + ' został pomyślnie dodany');
-                this.props.closeForm();
+            .then((res) => {
+                if(res.status >= 400) {
+                    toast.error(res.message);
+                } else {
+                    toast.success('Użytkownik został pomyślnie dodany');
+                    this.props.closeForm();
+                }
             })
             .catch(err => {
-                toast.error(err.message);
             });
 
         event.preventDefault();
