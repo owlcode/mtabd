@@ -75,4 +75,12 @@ public class UserController {
         userRepository.delete(user);
     }
 
+    @RequestMapping(value = {"/names"}, method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin
+    @Transactional
+    public String getUsernames() {
+        return userRepository.getUsernames();
+    }
+
 }

@@ -16,4 +16,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     UserDTO findOneUserDTO(@Param("id") Long id);
     @Query("select u from User u")
     Page<UserDTO> findAllUserDTO(Pageable pageable);
+
+    @Query(value = "select get_usernames()", nativeQuery = true)
+    String getUsernames();
 }

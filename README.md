@@ -10,7 +10,7 @@ Rebandel, Skrobich, Sowa
 ## Todos
 ~~2) Minimalna liczba tabel w bazie: *11*. Powinny być zaimplementowane w bazie 3 typy relacji 1-*, *-* i 1-1. Użycie check, unique, primary Key, index, constraints~~ 
 
-3. Aplikacja wykorzystuje do łączenia się z bazą ~~przede wszystkim system ORM a także~~ surowy SQL, Użycie procedur wbudowanych  
+~~3. Aplikacja wykorzystuje do łączenia się z bazą przede wszystkim system ORM a także surowy SQL, Użycie procedur wbudowanych~~  
 
 ~~5. Logowanie błędów aplikacji do pliku i do bazy danych.~~
 
