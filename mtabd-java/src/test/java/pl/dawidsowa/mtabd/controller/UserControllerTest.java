@@ -1,30 +1,40 @@
 package pl.dawidsowa.mtabd.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.catalina.filters.CorsFilter;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.dawidsowa.mtabd.domain.User;
-
+import pl.dawidsowa.mtabd.dto.UserAddDTO;
+import pl.dawidsowa.mtabd.dto.UserDTO;
 import pl.dawidsowa.mtabd.repository.UserRepository;
 
-
+import javax.annotation.Resource;
+import java.time.LocalDate;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@TestPropertySource("classpath:application.yml")
 public class UserControllerTest {
     private MockMvc mockMvc;
+
+    @Resource(name = "passwordEncoder")
+    PasswordEncoder passwordEncoder;
 
 
     @Mock
@@ -45,23 +55,20 @@ public class UserControllerTest {
     @Test
     public void addUser() throws Exception {
         //ustawic dane dla dto
-        UserAddDTO dto = new User();
-        User user = new User();
-        user.setUsername(dto.getUsername());
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        user.setFirstName(dto.getFirstName());
-        user.setLastName(dto.getLastName());
-        user.setEmail(dto.getEmail());
-        user.setBirth(dto.getBirth());
-        when(repository.exists(user.getUsername())).thenReturn(false);
-        doNothing().when(repository).save(user);
+        UserAddDTO user = new UserAddDTO();
+        user.setUsername("user");
+        user.setPassword("password");
+        user.setFirstName("Jan");
+        user.setLastName("Nowak");
+        user.setEmail("user@example.com");
+        user.setBirth(LocalDate.of(1990, 1, 1));
+        when(repository.save(any(User.class))).thenReturn(new User());
         mockMvc.perform(
-                post("/")
+                post("/api/user/")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(user)))
-                .andExpect(status().isCreated());
-        verify(repository, times(1)).exists(user.getUsername());
-        verify(repository, times(1)).save(user);
+                        .content(new ObjectMapper().writeValueAsString(user)))
+                .andExpect(status().isOk());
+        verify(repository, times(1)).save(any(User.class));
         verifyNoMoreInteractions(repository);
     }
 
@@ -69,7 +76,7 @@ public class UserControllerTest {
     public void getUser_notFound() throws Exception {
         //id zmienne dla potrzeb testów
         when(repository.findOneUserDTO(23L)).thenReturn(null);
-        mockMvc.perform(get("/", 23L))
+        mockMvc.perform(get("/api/user/"+23L))
                 .andExpect(status().isNotFound());
         verify(repository, times(1)).findOneUserDTO(23L);
         verifyNoMoreInteractions(repository);
@@ -78,7 +85,7 @@ public class UserControllerTest {
     @Test
     public void deleteUser() throws Exception {
         // zainicjalozowac dane usera, zeby zostaly zwracane w razie znalezienia go w repo
-        User user = null;
+        UserDTO user = null;
         when(repository.findOneUserDTO(1L)).thenReturn(user);
         doNothing().when(repository).delete(1L);
         mockMvc.perform(
