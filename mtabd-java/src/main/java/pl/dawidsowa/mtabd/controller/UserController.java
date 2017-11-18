@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.dawidsowa.mtabd.domain.User;
+import pl.dawidsowa.mtabd.dto.LoginDTO;
 import pl.dawidsowa.mtabd.dto.UserAddDTO;
 import pl.dawidsowa.mtabd.dto.UserDTO;
+import pl.dawidsowa.mtabd.dto.UserLoginDTO;
 import pl.dawidsowa.mtabd.repository.MessageRepository;
 import pl.dawidsowa.mtabd.repository.UserRepository;
 
@@ -50,7 +52,7 @@ public class UserController {
     @ResponseBody
     public UserDTO getRandomUser() {
         long count = userRepository.count();
-        int page = new Random().nextInt((int)count);
+        int page = new Random().nextInt((int) count);
         Page<UserDTO> user = userRepository.findAllUserDTO(new PageRequest(page, 1));
         if (user.hasContent())
             return user.getContent().get(0);
@@ -63,6 +65,18 @@ public class UserController {
     public UserDTO getUser(@PathVariable("id") Long id) {
         return userRepository.findOneUserDTO(id);
     }
+
+    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    @ResponseBody
+    public UserDTO userLoggin(@RequestBody UserLoginDTO dto) {
+        LoginDTO login = userRepository.findOneByUserName(dto.getUsername());
+        if (login == null) {
+            return null;
+        } else if (passwordEncoder.matches(login.getPassword(), dto.getPassword())) {
+            return userRepository.findOneUserDTO(login.getId());
+        } else return null;
+    }
+
 
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
