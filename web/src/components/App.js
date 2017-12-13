@@ -3,9 +3,8 @@ import Navbar from './Navbar/Navbar';
 import {Icon, Label, Menu, Segment, Sidebar} from 'semantic-ui-react'
 import {Link} from 'react-router';
 import {ToastContainer} from 'react-toastify';
-import Memory from "../Library/Memory";
-import {settings} from "../settings";
 import LoginPage from "./Login/LoginPage";
+import {userService} from "../_services/user.service";
 
 class App extends Component {
     state = {
@@ -70,14 +69,10 @@ class App extends Component {
             </Sidebar.Pushable>
         } else {
             content = <LoginPage onSubmit={data => {
-                this.setState({loggedIn: true});
-                fetch(settings.api + '/api/user/random')
-                    .then(res => res.json())
-                    .then((user) => {
-                        Memory.save('user', user);
-                        this.setState({user});
-                    })
-                    .catch(err => console.error(err));
+                
+                    userService.login(data.username, data.password)
+                        .then(user => this.setState({user}))
+                        .catch(err => console.error(err));
             }}/>
         }
 
