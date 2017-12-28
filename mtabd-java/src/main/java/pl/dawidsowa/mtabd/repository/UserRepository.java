@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import pl.dawidsowa.mtabd.domain.User;
-import pl.dawidsowa.mtabd.dto.LoginDTO;
 import pl.dawidsowa.mtabd.dto.UserDTO;
 
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -17,8 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     UserDTO findOneUserDTO(@Param("id") Long id);
     @Query("select u from User u")
     Page<UserDTO> findAllUserDTO(Pageable pageable);
-    @Query("select u.id, u.username, u.password from User u where username = :username")
-    LoginDTO findOneByUserName(@Param("username") String username);
 
     @Query(value = "select get_usernames()", nativeQuery = true)
     String getUsernames();

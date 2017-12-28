@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserRepository userRepository;
 
@@ -55,6 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .authorizeRequests()
                 .antMatchers("/h2-console", "/h2-console/**").permitAll()
-                .anyRequest().permitAll();//authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll();
     }
 }
