@@ -1,4 +1,5 @@
 import { authHeader } from '../_helpers';
+import {settings} from '../settings';
 
 export const userService = {
     login,
@@ -13,7 +14,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch('/api/user/login', requestOptions)
+    return fetch(settings.api +'/login', requestOptions)
         .then(response => {
             if (!response.ok) { 
                 return Promise.reject(response.statusText);
@@ -23,7 +24,7 @@ function login(username, password) {
         })
         .then(user => {
             // login successful if there's a jwt token in the response
-            if (user && user.token) {
+            if (user) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
             }

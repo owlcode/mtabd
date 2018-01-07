@@ -18,20 +18,6 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserRepository userRepository;
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return s -> {
-            User user = userRepository.findTopByUsername(s);
-            return new org.springframework.security.core.userdetails.User(
-                    user.getUsername(),
-                    user.getPassword(),
-                    new ArrayList<>()
-            );
-        };
-    }
-
     @Bean(name = "passwordEncoder")
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -41,24 +27,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(userDetailsService())
-                .passwordEncoder(passwordEncoder());
+                .inMemoryAuthentication()
+                .withUser("username@example.com").password("password123").roles("USER");
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .httpBasic()
-                .and()
-                .csrf().disable()
-                .headers().frameOptions().disable()
-                .and()
+                .httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/h2-console", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .permitAll();
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll()
+                .and()
+                .csrf().disable()
+                .headers().frameOptions().disable();
+
+//        http
+//                .httpBasic()
+//                .and()
+//                .csrf().disable()
+//                .headers().frameOptions().disable()
+//                .and()
+//                .authorizeRequests()
+//                        .antMatchers("/h2-console", "/h2-console/**").permitAll()
+//                        .anyRequest().hasAnyRole("USER")
+//                .and().
+//                formLogin().loginPage("/login").passwordParameter("password").usernameParameter("username");
+//    }
     }
 }

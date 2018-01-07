@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import pl.dawidsowa.mtabd.domain.User;
 import pl.dawidsowa.mtabd.dto.UserAddDTO;
 import pl.dawidsowa.mtabd.dto.UserDTO;
+import pl.dawidsowa.mtabd.dto.UserLoginDTO;
 import pl.dawidsowa.mtabd.repository.MessageRepository;
 import pl.dawidsowa.mtabd.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
@@ -44,6 +46,17 @@ public class UserController {
         user.setEmail(dto.getEmail());
         user.setBirth(dto.getBirth());
         userRepository.save(user);
+    }
+
+    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public User addUser(@RequestBody UserLoginDTO dto) {
+        String username = "jankowalski@example.com";
+        String password = "password";
+        if(dto.getUsername().equals(username) && dto.getPassword().equals(password)) {
+            User user = userRepository.findOneByUsername("jan.kowalski@example.com");
+            return user;
+        } else return null;
     }
 
     @RequestMapping(value = "/random", method = RequestMethod.GET)
