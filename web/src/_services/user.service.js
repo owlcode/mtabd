@@ -9,12 +9,15 @@ export const userService = {
 
 function login(username, password) {
     const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'username':username,
+            'password':password },
+        // body: JSON.stringify
     };
 
-    return fetch(settings.api +'/login', requestOptions)
+    return fetch(settings.api + '/api/user/login?username=' + username + '&password=' + password,requestOptions)
         .then(response => {
             if (!response.ok) { 
                 return Promise.reject(response.statusText);
@@ -23,13 +26,9 @@ function login(username, password) {
             return response.json();
         })
         .then(user => {
-            // login successful if there's a jwt token in the response
-            if (user) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
-            }
-
-            return user;
+            if(user) {
+                return user;
+            } else return null;
         });
 }
 

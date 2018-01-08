@@ -11,8 +11,8 @@ import pl.dawidsowa.mtabd.dto.UserDTO;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findTopByUsername(String username);
 
-    @Query("select u from User u where email = :username")
-    User findOneByUsername(@Param("username") String username);
+    @Query("select u from User u where email = :email")
+    UserDTO findOneByEmail(@Param("email") String email);
 
     //Projections
     @Query("select u from User u where id = :id")

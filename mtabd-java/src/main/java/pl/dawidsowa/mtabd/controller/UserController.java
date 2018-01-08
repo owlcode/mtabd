@@ -48,16 +48,6 @@ public class UserController {
         userRepository.save(user);
     }
 
-    @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public User addUser(@RequestBody UserLoginDTO dto) {
-        String username = "jankowalski@example.com";
-        String password = "password";
-        if(dto.getUsername().equals(username) && dto.getPassword().equals(password)) {
-            User user = userRepository.findOneByUsername("jan.kowalski@example.com");
-            return user;
-        } else return null;
-    }
 
     @RequestMapping(value = "/random", method = RequestMethod.GET)
     @ResponseBody
@@ -67,6 +57,23 @@ public class UserController {
         Page<UserDTO> user = userRepository.findAllUserDTO(new PageRequest(page, 1));
         if (user.hasContent())
             return user.getContent().get(0);
+        else
+            return null;
+    }
+
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @ResponseBody
+    public UserDTO login(@RequestParam("username") String username, @RequestParam("password") String password) {
+        boolean flag = false;
+        UserDTO user = null;
+        if((username.equals("jankowalski@example.com") && password.equals("password")) || (username.equals("znowak@google.com") && password.equals("12345678"))) {
+            user = userRepository.findOneByEmail(username);
+            if (user != null)
+                flag = true;
+        }
+        if(flag)
+            return user;
         else
             return null;
     }

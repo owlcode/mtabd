@@ -5,6 +5,7 @@ import {Link} from 'react-router';
 import {ToastContainer} from 'react-toastify';
 import LoginPage from "./Login/LoginPage";
 import {userService} from "../_services/user.service";
+import Memory from "../Library/Memory";
 
 class App extends Component {
     state = {
@@ -69,9 +70,15 @@ class App extends Component {
             </Sidebar.Pushable>
         } else {
             content = <LoginPage onSubmit={data => {
-                
                     userService.login(data.username, data.password)
-                        .then(user => this.setState({user}))
+                    .then(user =>
+                    {
+                        if(user) {
+                            Memory.save('user',user)
+                            this.setState({loggedIn:true});
+                            this.setState({user});
+                        }
+                        })
                         .catch(err => console.error(err));
             }}/>
         }
