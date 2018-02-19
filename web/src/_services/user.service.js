@@ -8,28 +8,10 @@ export const userService = {
 };
 
 function login(username, password) {
-    const requestOptions = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'username':username,
-            'password':password },
-        // body: JSON.stringify
-    };
-
-    return fetch(settings.api + '/api/user/login?username=' + username + '&password=' + password,requestOptions)
-        .then(response => {
-            if (!response.ok) { 
-                return Promise.reject(response.statusText);
-            }
-
-            return response.json();
-        })
-        .then(user => {
-            if(user) {
-                return user;
-            } else return null;
-        });
+    return Promise.resolve({
+        name: 'TestUsername',
+        username: 'TestUsername'
+    })
 }
 
 function logout() {

@@ -29,7 +29,7 @@ class ChatList extends Component {
 
         this.state.data.forEach(item => {
             list.push(
-                <Grid.Column key={item.id}>
+                <Grid.Column key={item._id}>
                     <Link to={'chat/single/' + item.id}>
                         <Segment raised>
                             <Image avatar src='http://semantic-ui.com/images/avatar2/small/rachel.png' size='tiny'/>
