@@ -24,21 +24,32 @@ public class Boostrap {
 
     @PostConstruct
     public void boostrap() {
-        User user = new User();
-        user.setFirstName("Jan");
-        user.setLastName("Kowalski");
-        user.setEmail("jan.kowalski@example.com");
-        user.setBirth(LocalDate.of(1984, 12, 12));
-        user.setUsername("user");
-        user.setPassword(passwordEncoder.encode("password"));
+        User user1 = new User();
+        user1.setFirstName("Jan");
+        user1.setLastName("Kowalski");
+        user1.setEmail("jankowalski@example.com");
+        user1.setBirth(LocalDate.of(1984, 12, 12));
+        user1.setUsername("user");
+        user1.setPassword(passwordEncoder.encode("password"));
 
-        userRepository.save(user);
+        userRepository.save(user1);
 
+
+        User user2 = new User();
+        user2.setFirstName("Zbigniew");
+        user2.setLastName("Nowak");
+        user2.setEmail("znowak@google.com");
+        user2.setBirth(LocalDate.of(1974, 01, 30));
+        user2.setUsername("nowak");
+        user2.setPassword(passwordEncoder.encode("12345678"));
+
+        userRepository.save(user2);
         Chat chat = createChat();
 
-        createMessage("Cześć", chat, user);
-        createMessage("Hello", chat, user);
-        createMessage("Nopppppee", chat, user);
+        createMessage("Cześć", chat, user1);
+        createMessage("Hello", chat, user2);
+        createMessage("Nopppppee", chat, user1);
+        createMessage("AAAAAAAA", chat, user1);
     }
 
     private Chat createChat() {

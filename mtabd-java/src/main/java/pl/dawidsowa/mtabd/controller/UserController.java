@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import pl.dawidsowa.mtabd.domain.User;
 import pl.dawidsowa.mtabd.dto.UserAddDTO;
 import pl.dawidsowa.mtabd.dto.UserDTO;
+import pl.dawidsowa.mtabd.dto.UserLoginDTO;
 import pl.dawidsowa.mtabd.repository.MessageRepository;
 import pl.dawidsowa.mtabd.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
@@ -46,6 +48,7 @@ public class UserController {
         userRepository.save(user);
     }
 
+
     @RequestMapping(value = "/random", method = RequestMethod.GET)
     @ResponseBody
     public UserDTO getRandomUser() {
@@ -58,11 +61,30 @@ public class UserController {
             return null;
     }
 
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @ResponseBody
+    public UserDTO login(@RequestParam("username") String username, @RequestParam("password") String password) {
+        boolean flag = false;
+        UserDTO user = null;
+        if((username.equals("jankowalski@example.com") && password.equals("password")) || (username.equals("znowak@google.com") && password.equals("12345678"))) {
+            user = userRepository.findOneByEmail(username);
+            if (user != null)
+                flag = true;
+        }
+        if(flag)
+            return user;
+        else
+            return null;
+    }
+
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
     @ResponseBody
     public UserDTO getUser(@PathVariable("id") Long id) {
         return userRepository.findOneUserDTO(id);
     }
+
+
 
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)

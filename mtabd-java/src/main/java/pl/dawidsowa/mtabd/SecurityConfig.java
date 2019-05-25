@@ -16,21 +16,7 @@ import java.util.ArrayList;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
-
-    private final UserRepository userRepository;
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return s -> {
-            User user = userRepository.findTopByUsername(s);
-            return new org.springframework.security.core.userdetails.User(
-                    user.getUsername(),
-                    user.getPassword(),
-                    new ArrayList<>()
-            );
-        };
-    }
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean(name = "passwordEncoder")
     public PasswordEncoder passwordEncoder() {
@@ -39,22 +25,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService())
-                .passwordEncoder(passwordEncoder());
-    }
-
-    @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .httpBasic()
-                .and()
-                .csrf().disable()
-                .headers().frameOptions().disable()
-                .and()
+                .httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/h2-console", "/h2-console/**").permitAll()
-                .anyRequest().permitAll();//authenticated();
+                .and()
+                .csrf().disable()
+                .headers().frameOptions().disable();
+
+//        http
+//                .httpBasic()
+//                .and()
+//                .csrf().disable()
+//                .headers().frameOptions().disable()
+//                .and()
+//                .authorizeRequests()
+//                        .antMatchers("/h2-console", "/h2-console/**").permitAll()
+//                        .anyRequest().hasAnyRole("USER")
+//                .and().
+//                formLogin().loginPage("/login").passwordParameter("password").usernameParameter("username");
+//    }
     }
 }

@@ -70,7 +70,7 @@ class LoginPage extends Component {
                             }
 
                             if (!anyError) {
-                                this.props.onSubmit();
+                                this.props.onSubmit({username: this.state.mail, password: this.state.password});
                             }
 
                         }}
